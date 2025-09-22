@@ -1,0 +1,12 @@
+GET http://localhost:5015/anime
+###
+POST http://localhost:5015/anime
+Content-Type: application/json
+
+{
+    "title": "Naruto",
+    "description": "A story about a young ninja.",
+    "releaseDate": "2002-10-03T00:00:00Z",
+    "genreId": 1
+
+}
