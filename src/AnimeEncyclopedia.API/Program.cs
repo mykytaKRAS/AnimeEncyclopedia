@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using AnimeEncyclopedia.Domain;
 using AnimeEncyclopedia.API.Endpoints.Anime;
 using AnimeEncyclopedia.API.Endpoints.Genres;
+using AnimeEncyclopedia.API.Endpoints.Characters;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -19,5 +20,6 @@ app.MapUpdateAnimeEndpoint();
 app.MapDeleteAnimeEndpoint();
 app.MapGetGenreEndpoint();
 app.MapCreateGenreEndpoint();
-
+app.MapGetCharcterByAnimeIdEndpoint();
+app.MapCreateCharacterEndpoint();
 app.Run();

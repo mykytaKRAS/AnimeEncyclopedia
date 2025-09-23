@@ -44,3 +44,13 @@ Content-Type: application/json
 {
     "name": "Romance"
 }
+###
+GET http://localhost:5015/anime/3/characters
+###
+POST http://localhost:5015/anime/3/characters
+Content-Type: application/json
+
+{
+    "name": "Sasuke Uchiha",
+    "role": "Main Character"
+}
