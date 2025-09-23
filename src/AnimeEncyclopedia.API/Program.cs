@@ -8,14 +8,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+//remove all to other files
+
 app.MapGet("/", () => "Anime Encyclopedia API is running!");
-
-
-app.MapGet("/anime", async (AppDbContext db) =>
-    await db.Animes
-            .Include(a => a.Genre)
-            .Select(a => new AnimeDto(a.Id, a.Title, a.Description, a.ReleaseDate, a.Genre.Name))
-            .ToListAsync());
 
 app.MapPost("/anime", async (Anime anime, AppDbContext db) =>
 {
@@ -25,4 +20,3 @@ app.MapPost("/anime", async (Anime anime, AppDbContext db) =>
 });
 
 app.Run();
-public record AnimeDto(int Id, string Title, string Description, DateTime ReleaseDate, string GenreName);
