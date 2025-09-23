@@ -10,3 +10,14 @@ Content-Type: application/json
     "genreId": 1
 
 }
+###
+POST http://localhost:5015/anime
+Content-Type: application/json
+
+{
+    "title": "One Piece",
+    "description": "A story about pirates.",
+    "releaseDate": "1999-10-20T00:00:00Z",
+    "genreId": 1
+
+}
