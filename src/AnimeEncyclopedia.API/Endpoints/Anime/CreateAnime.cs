@@ -1,6 +1,5 @@
 using AnimeEncyclopedia.API.DTOs;
 using AnimeEncyclopedia.Infrastructure;
-using AnimeEncyclopedia.Domain;
 namespace AnimeEncyclopedia.API.Endpoints.Anime;
 
 public static class CreateAnime

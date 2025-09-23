@@ -15,11 +15,32 @@ POST http://localhost:5015/anime
 Content-Type: application/json
 
 {
-    "title": "One Piece",
-    "description": "A story about pirates.",
-    "releaseDate": "1999-10-20T00:00:00Z",
+    "title": "Bleach",
+    "description": "A story about a high school student who becomes a Soul Reaper.",
+    "releaseDate": "2004-10-05T00:00:00Z",
     "genreId": 1
 
 }
 ###
-GET http://localhost:5015/anime/3
+GET http://localhost:5015/anime/5
+###
+PUT http://localhost:5015/anime/3
+Content-Type: application/json
+
+{
+    "title": "Naruto",
+    "description": "A story about a young ninja. His dream is to become the Hokage.",
+    "releaseDate": "2002-10-03T00:00:00Z",
+    "genreId": 1
+}
+###
+DELETE http://localhost:5015/anime/6
+###
+GET http://localhost:5015/genres
+###
+POST http://localhost:5015/genres
+Content-Type: application/json
+
+{
+    "name": "Romance"
+}

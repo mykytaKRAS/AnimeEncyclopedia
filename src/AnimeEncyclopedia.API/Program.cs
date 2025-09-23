@@ -2,6 +2,7 @@ using AnimeEncyclopedia.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using AnimeEncyclopedia.Domain;
 using AnimeEncyclopedia.API.Endpoints.Anime;
+using AnimeEncyclopedia.API.Endpoints.Genres;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -14,4 +15,9 @@ app.MapGet("/", () => "Anime Encyclopedia API is running!");
 app.MapGetAnimeEndpoint();
 app.MapCreateAnimeEndpoint();
 app.MapGetAnimeByIdEndpoint();
+app.MapUpdateAnimeEndpoint();
+app.MapDeleteAnimeEndpoint();
+app.MapGetGenreEndpoint();
+app.MapCreateGenreEndpoint();
+
 app.Run();
