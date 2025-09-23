@@ -13,5 +13,5 @@ app.MapGet("/", () => "Anime Encyclopedia API is running!");
 
 app.MapGetAnimeEndpoint();
 app.MapCreateAnimeEndpoint();
-
+app.MapGetAnimeByIdEndpoint();
 app.Run();

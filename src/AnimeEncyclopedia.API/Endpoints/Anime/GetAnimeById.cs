@@ -1,16 +1,17 @@
 using AnimeEncyclopedia.API.DTOs;
 using AnimeEncyclopedia.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-
 namespace AnimeEncyclopedia.API.Endpoints.Anime;
 
-public static class GetAnime
+public static class GetAnimeById
 {
-    public static void MapGetAnimeEndpoint(this IEndpointRouteBuilder routes)
+    public static void MapGetAnimeByIdEndpoint(this IEndpointRouteBuilder routes)
     {
-        routes.MapGet("/anime", async (AppDbContext db) =>
-            await db.Animes
+        routes.MapGet("anime/{id:int}", async (int id, AppDbContext db) =>
+        {
+            var anime = await db.Animes
                 .Include(a => a.Genre)
+                .Where(a => a.Id == id)
                 .Select(a => new AnimeDto(
                     a.Id,
                     a.Title,
@@ -18,7 +19,9 @@ public static class GetAnime
                     a.ReleaseDate,
                     a.Genre.Name
                 ))
-                .ToListAsync()
-        );
+                .FirstOrDefaultAsync();
+
+            return anime is not null ? Results.Ok(anime) : Results.NotFound();
+        });
     }
 }

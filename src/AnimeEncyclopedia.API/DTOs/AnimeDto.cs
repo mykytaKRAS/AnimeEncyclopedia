@@ -1,4 +1,4 @@
-namespace AnimeEncyclopedia.Api.DTOs;
+namespace AnimeEncyclopedia.API.DTOs;
 
 public record AnimeDto(
     int Id, 
