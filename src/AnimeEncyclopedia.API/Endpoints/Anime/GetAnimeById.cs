@@ -22,6 +22,6 @@ public static class GetAnimeById
                 .FirstOrDefaultAsync();
 
             return anime is not null ? Results.Ok(anime) : Results.NotFound();
-        });
+        }).RequireAuthorization();;
     }
 }

@@ -17,6 +17,6 @@ public static class GetCharacterByAnimeId
                     new AnimeDto(c.Anime.Id, c.Anime.Title, c.Anime.Description, c.Anime.ReleaseDate, c.Anime.Genre.Name)
                 ))
                 .ToListAsync()
-        );
+        ).RequireAuthorization();;
     }
 }

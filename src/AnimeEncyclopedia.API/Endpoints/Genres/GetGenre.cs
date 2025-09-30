@@ -15,6 +15,6 @@ public static class GetGenre
                     g.Name
                 ))
                 .ToListAsync()
-        );
+        ).RequireAuthorization();;
     }
 }

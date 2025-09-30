@@ -19,6 +19,6 @@ public static class GetAnime
                     a.Genre.Name
                 ))
                 .ToListAsync()
-        );
+        ).RequireAuthorization();;
     }
 }

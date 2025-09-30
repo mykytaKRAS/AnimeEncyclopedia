@@ -32,6 +32,6 @@ public static class CreateCharacer
                     new AnimeDto(anime.Id, anime.Title, anime.Description, anime.ReleaseDate, Genre.Name))
             );
             
-        });
+        }).RequireAuthorization(policy => policy.RequireRole("Admin"));;
     }
 }

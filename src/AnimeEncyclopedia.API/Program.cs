@@ -13,7 +13,13 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 var app = builder.Build();
 
 app.MapGet("/", () => "Anime Encyclopedia API is running!");
-
+app.MapGet("/protected", () => "You are authorized!")
+   .RequireAuthorization();
+   
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapApiEndpoints();
+
+
 
 app.Run();
