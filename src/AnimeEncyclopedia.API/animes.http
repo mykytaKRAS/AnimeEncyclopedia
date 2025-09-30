@@ -34,7 +34,7 @@ Content-Type: application/json
     "genreId": 1
 }
 ###
-DELETE http://localhost:5015/anime/6
+DELETE http://localhost:5015/anime/7
 ###
 GET http://localhost:5015/genres
 ###
@@ -53,4 +53,12 @@ Content-Type: application/json
 {
     "name": "Sasuke Uchiha",
     "role": "Main Character"
+}
+###
+POST http://localhost:5015/login
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "123"
 }

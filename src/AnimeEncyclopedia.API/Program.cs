@@ -1,25 +1,19 @@
 using AnimeEncyclopedia.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using AnimeEncyclopedia.Domain;
-using AnimeEncyclopedia.API.Endpoints.Anime;
-using AnimeEncyclopedia.API.Endpoints.Genres;
-using AnimeEncyclopedia.API.Endpoints.Characters;
+using AnimeEncyclopedia.API.Extensions;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Anime Encyclopedia API is running!");
 
-app.MapGetAnimeEndpoint();
-app.MapCreateAnimeEndpoint();
-app.MapGetAnimeByIdEndpoint();
-app.MapUpdateAnimeEndpoint();
-app.MapDeleteAnimeEndpoint();
-app.MapGetGenreEndpoint();
-app.MapCreateGenreEndpoint();
-app.MapGetCharcterByAnimeIdEndpoint();
-app.MapCreateCharacterEndpoint();
+app.MapApiEndpoints();
+
 app.Run();

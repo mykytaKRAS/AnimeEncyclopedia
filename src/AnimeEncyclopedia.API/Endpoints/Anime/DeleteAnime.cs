@@ -14,6 +14,6 @@ public static class DeleteAnime
             await db.SaveChangesAsync();
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization(policy => policy.RequireRole("Admin"));;
     }
 }
