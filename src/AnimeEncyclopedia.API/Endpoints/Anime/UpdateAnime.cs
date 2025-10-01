@@ -30,6 +30,6 @@ public static class UpdateAnime
                 anime.ReleaseDate,
                 genre.Name
             ));
-        });
+        }).RequireAuthorization(policy => policy.RequireRole("Admin"));;
     }
 }

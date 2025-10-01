@@ -10,4 +10,6 @@ public class AppDbContext : DbContext
     public DbSet<Anime> Animes => Set<Anime>();
     public DbSet<Genre> Genres => Set<Genre>();
     public DbSet<Character> Characters => Set<Character>();
+    public DbSet<User> Users => Set<User>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 }

@@ -22,6 +22,6 @@ public static class CreateGenre
                 genre.Id,
                 genre.Name
             ));
-        });
+        }).RequireAuthorization(policy => policy.RequireRole("Admin"));;
     }
 }

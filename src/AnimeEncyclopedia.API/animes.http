@@ -1,4 +1,5 @@
 GET http://localhost:5015/anime
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYm9iIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1OTIzMzM2MSwiaXNzIjoiQW5pbWVFbmN5Y2xvcGVkaWEiLCJhdWQiOiJBbmltZUVuY3ljbG9wZWRpYSJ9.3ITgGc1MeNdWo0vRmlkW9jf-B_AgkLE_YFMEMvDqQDs
 ###
 POST http://localhost:5015/anime
 Content-Type: application/json
@@ -55,10 +56,34 @@ Content-Type: application/json
     "role": "Main Character"
 }
 ###
-POST http://localhost:5015/login
+POST http://localhost:5015/auth/register
 Content-Type: application/json
 
 {
-    "username": "user",
-    "password": "123"
+    "username": "bob",
+    "email":"b@x",
+    "password": "P@ss1234"
 }
+###
+POST http://localhost:5015/auth/login
+Content-Type: application/json
+
+{
+  "usernameOrEmail": "bob",
+  "password": "P@ss1234"
+}
+###
+POST http://localhost:5015/auth/revoke
+Content-Type: application/json
+
+{
+  "refreshToken": "sl4OUEoYmSIFJv+vaCadgmKgPskwLoOssfEy0UTDsIGYy9nthlXrjkgl3tmFUp7fpcpxqdDg4JNX9Evmi+xMUQ=="
+}
+###
+GET http://localhost:5015/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYm9iIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1OTIzMzM2MSwiaXNzIjoiQW5pbWVFbmN5Y2xvcGVkaWEiLCJhdWQiOiJBbmltZUVuY3ljbG9wZWRpYSJ9.3ITgGc1MeNdWo0vRmlkW9jf-B_AgkLE_YFMEMvDqQDs
+###
+GET http://localhost:5015/anime
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYm9iIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1OTMxNTI1MywiaXNzIjoiQW5pbWVFbmN5Y2xvcGVkaWEiLCJhdWQiOiJBbmltZUVuY3ljbG9wZWRpYSJ9.SI4HF4FPUASQ3GtJC-1YPTcJCBbs5mQ0vfpO5aDcgHw
+###
+GET http://localhost:5015/test-error
