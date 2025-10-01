@@ -11,7 +11,7 @@ public static class AuthEndpoints
 {
     public static void MapAuthEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/auth/register", async (RegisterDto dto, AppDbContext db, JwtService jwt) =>
+        app.MapPost("/auth/register/user", async (RegisterDto dto, AppDbContext db, JwtService jwt) =>
         {
             // простые валидации
             if (await db.Users.AnyAsync(u => u.Username == dto.Username || u.Email == dto.Email))
@@ -23,6 +23,33 @@ public static class AuthEndpoints
                 Email = dto.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Role = "User"
+            };
+
+            db.Users.Add(user);
+            await db.SaveChangesAsync();
+
+            var accessLifetime = TimeSpan.FromHours(2);
+            var access = jwt.GenerateAccessToken(user, accessLifetime);
+            var (refreshToken, refreshExpires) = jwt.GenerateRefreshToken();
+
+            user.RefreshTokens.Add(new RefreshToken { Token = refreshToken, Expires = refreshExpires, IsRevoked = false });
+            await db.SaveChangesAsync();
+
+            return Results.Ok(new AuthResponseDto(access, refreshToken, DateTime.UtcNow.Add(accessLifetime)));
+        });
+
+        app.MapPost("/auth/register/admin", async (RegisterDto dto, AppDbContext db, JwtService jwt) =>
+        {
+            // простые валидации
+            if (await db.Users.AnyAsync(u => u.Username == dto.Username || u.Email == dto.Email))
+                return Results.BadRequest("Username or email already taken.");
+
+            var user = new User
+            {
+                Username = dto.Username,
+                Email = dto.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Role = "Admin"
             };
 
             db.Users.Add(user);
